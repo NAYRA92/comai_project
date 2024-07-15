@@ -84,6 +84,16 @@ class LandingPage extends StatelessWidget {
                   )
           ],),
       ),
+      bottomNavigationBar: BottomAppBar(
+        surfaceTintColor: Colors.transparent,
+        child: Text("Developed with love by starCode for Development\nUsing Flutter and Gemini",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.lato(
+                  color: Colors.blueGrey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,),
+                  ),
+      ),
     );
   }
   

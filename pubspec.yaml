@@ -38,9 +38,9 @@ dependencies:
   google_generative_ai: ^0.4.3
   google_fonts:
   flutter_animate:
-  social_share: ^2.3.1
   flutter_markdown:
   change_app_package_name:
+  share_plus: ^9.0.0
 
 dev_dependencies:
   flutter_test:

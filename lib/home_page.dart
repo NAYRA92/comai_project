@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:share_plus/share_plus.dart';
 
 const String _apiKey = 'AIzaSyAP1ll1nMtTlOaOopIwdi62n1f9GVut21w';
 
@@ -21,7 +22,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(widget.title)),
       ),
       body: ChatWidget(apiKey: _apiKey, chatMessage: widget.chatMessageUpper,),
     );
@@ -77,26 +80,6 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldDecoration = InputDecoration(
-      contentPadding: const EdgeInsets.all(15),
-      hintText: widget.chatMessage,
-      border: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(14),
-        ),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(14),
-        ),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-      ),
-    );
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -136,15 +119,6 @@ class _ChatWidgetState extends State<ChatWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Expanded(
-                //   child: TextField(
-                //     autofocus: true,
-                //     focusNode: _textFieldFocus,
-                //     decoration: textFieldDecoration,
-                //     // controller: _textController,
-                //     onSubmitted: _sendChatMessage,
-                //   ),
-                // ),
                 const SizedBox.square(dimension: 15),
                 // IconButton(
                 //   onPressed: !_loading
@@ -166,7 +140,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                       await Clipboard.setData(
                         ClipboardData(text: contentToCopy));
                       // copied successfully
-                      SnackBar(content: Text(contentToCopy),);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Copied to clopboard!'),));
                       print(contentToCopy);
                     },
                     icon: Icon(
@@ -178,10 +153,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                  //share button
                 IconButton(
                     onPressed: () async {
-                      // SocialShare.shareOptions("Hello world").then((data) {
-                      //   data = contentToCopy;
-                      //       print(data);
-                      //     });
+                      Share.share(contentToCopy, subject: 'By ComAI app');
                     },
                     icon: Icon(
                       Icons.share,
@@ -210,58 +182,58 @@ class _ChatWidgetState extends State<ChatWidget> {
     );
   }
 
-  Future<void> _sendImagePrompt(String message) async {
-    setState(() {
-      _loading = true;
-    });
-    try {
-      ByteData catBytes = await rootBundle.load('assets/images/cat.jpg');
-      ByteData sconeBytes = await rootBundle.load('assets/images/scones.jpg');
-      final content = [
-        Content.multi([
-          TextPart(message),
-          // The only accepted mime types are image/*.
-          DataPart('image/jpeg', catBytes.buffer.asUint8List()),
-          DataPart('image/jpeg', sconeBytes.buffer.asUint8List()),
-        ])
-      ];
-      _generatedContent.add((
-        image: Image.asset("assets/images/cat.jpg"),
-        text: message,
-        fromUser: true
-      ));
-      _generatedContent.add((
-        image: Image.asset("assets/images/scones.jpg"),
-        text: null,
-        fromUser: true
-      ));
+  // Future<void> _sendImagePrompt(String message) async {
+  //   setState(() {
+  //     _loading = true;
+  //   });
+  //   try {
+  //     ByteData catBytes = await rootBundle.load('assets/images/cat.jpg');
+  //     ByteData sconeBytes = await rootBundle.load('assets/images/scones.jpg');
+  //     final content = [
+  //       Content.multi([
+  //         TextPart(message),
+  //         // The only accepted mime types are image/*.
+  //         DataPart('image/jpeg', catBytes.buffer.asUint8List()),
+  //         DataPart('image/jpeg', sconeBytes.buffer.asUint8List()),
+  //       ])
+  //     ];
+  //     _generatedContent.add((
+  //       image: Image.asset("assets/images/cat.jpg"),
+  //       text: message,
+  //       fromUser: true
+  //     ));
+  //     _generatedContent.add((
+  //       image: Image.asset("assets/images/scones.jpg"),
+  //       text: null,
+  //       fromUser: true
+  //     ));
 
-      var response = await _model.generateContent(content);
-      var text = response.text;
-      _generatedContent.add((image: null, text: text, fromUser: false));
+  //     var response = await _model.generateContent(content);
+  //     var text = response.text;
+  //     _generatedContent.add((image: null, text: text, fromUser: false));
 
-      if (text == null) {
-        _showError('No response from API.');
-        return;
-      } else {
-        setState(() {
-          _loading = false;
-          _scrollDown();
-        });
-      }
-    } catch (e) {
-      _showError(e.toString());
-      setState(() {
-        _loading = false;
-      });
-    } finally {
-      _textController.clear();
-      setState(() {
-        _loading = false;
-      });
-      _textFieldFocus.requestFocus();
-    }
-  }
+  //     if (text == null) {
+  //       _showError('No response from API.');
+  //       return;
+  //     } else {
+  //       setState(() {
+  //         _loading = false;
+  //         _scrollDown();
+  //       });
+  //     }
+  //   } catch (e) {
+  //     _showError(e.toString());
+  //     setState(() {
+  //       _loading = false;
+  //     });
+  //   } finally {
+  //     _textController.clear();
+  //     setState(() {
+  //       _loading = false;
+  //     });
+  //     _textFieldFocus.requestFocus();
+  //   }
+  // }
 
   Future<void> _sendChatMessage(String message) async {
     setState(() {
@@ -336,9 +308,12 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return 
+    isFromUser ? Container() :
+    Row(
       mainAxisAlignment:
-          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+          // isFromUser ? MainAxisAlignment.end : 
+          MainAxisAlignment.start,
       children: [
         Flexible(
             child: Container(
@@ -357,7 +332,9 @@ class MessageWidget extends StatelessWidget {
                 child: Column(children: [
                   if (text case final text?) MarkdownBody(data: text),
                   if (image case final image?) image,
-                ]))),
+                ]),
+                ),
+                ),
       ],
     );
   }
