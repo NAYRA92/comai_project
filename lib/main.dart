@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'home_page.dart';
 import 'landing_page.dart';
 
 /// The API key to use when accessing the Gemini API.
