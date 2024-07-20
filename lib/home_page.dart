@@ -1,10 +1,11 @@
+import 'package:comai_project/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:share_plus/share_plus.dart';
 
-const String _apiKey = 'AIzaSyAP1ll1nMtTlOaOopIwdi62n1f9GVut21w';
+String _apiKey = comaiCodeApi; //import your own api key instead of comaiCodeApi
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, 
@@ -120,20 +121,6 @@ class _ChatWidgetState extends State<ChatWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox.square(dimension: 15),
-                // IconButton(
-                //   onPressed: !_loading
-                //       ? () async {
-                //           _sendImagePrompt(_textController.text);
-                //         }
-                //       : null,
-                //   icon: Icon(
-                //     Icons.image,
-                //     color: _loading
-                //         ? Theme.of(context).colorScheme.secondary
-                //         : Theme.of(context).colorScheme.primary,
-                //   ),
-                // ),
-
                  //copy button
                 IconButton(
                     onPressed: () async {
@@ -181,59 +168,6 @@ class _ChatWidgetState extends State<ChatWidget> {
       ),
     );
   }
-
-  // Future<void> _sendImagePrompt(String message) async {
-  //   setState(() {
-  //     _loading = true;
-  //   });
-  //   try {
-  //     ByteData catBytes = await rootBundle.load('assets/images/cat.jpg');
-  //     ByteData sconeBytes = await rootBundle.load('assets/images/scones.jpg');
-  //     final content = [
-  //       Content.multi([
-  //         TextPart(message),
-  //         // The only accepted mime types are image/*.
-  //         DataPart('image/jpeg', catBytes.buffer.asUint8List()),
-  //         DataPart('image/jpeg', sconeBytes.buffer.asUint8List()),
-  //       ])
-  //     ];
-  //     _generatedContent.add((
-  //       image: Image.asset("assets/images/cat.jpg"),
-  //       text: message,
-  //       fromUser: true
-  //     ));
-  //     _generatedContent.add((
-  //       image: Image.asset("assets/images/scones.jpg"),
-  //       text: null,
-  //       fromUser: true
-  //     ));
-
-  //     var response = await _model.generateContent(content);
-  //     var text = response.text;
-  //     _generatedContent.add((image: null, text: text, fromUser: false));
-
-  //     if (text == null) {
-  //       _showError('No response from API.');
-  //       return;
-  //     } else {
-  //       setState(() {
-  //         _loading = false;
-  //         _scrollDown();
-  //       });
-  //     }
-  //   } catch (e) {
-  //     _showError(e.toString());
-  //     setState(() {
-  //       _loading = false;
-  //     });
-  //   } finally {
-  //     _textController.clear();
-  //     setState(() {
-  //       _loading = false;
-  //     });
-  //     _textFieldFocus.requestFocus();
-  //   }
-  // }
 
   Future<void> _sendChatMessage(String message) async {
     setState(() {
