@@ -82,11 +82,21 @@ class _TextInputPageState extends State<TextInputPage> {
               
                   TextFormField(
                     controller: productNameCont,
+                    style: GoogleFonts.playfairDisplay(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,),
                     decoration: InputDecoration(
                       hintText: "Write the name",
+                      hintStyle: GoogleFonts.playfairDisplay(
+                      color: Color.fromARGB(117, 255, 255, 255),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,),
+                      fillColor: Color.fromARGB(255, 89, 88, 88),
+                      filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)
-                      )
+                      ),
                       ),
                     validator: (value) {
                        if (value == null || value.isEmpty) {
@@ -107,8 +117,18 @@ class _TextInputPageState extends State<TextInputPage> {
               
                   TextFormField(
                     controller: whatProvideCont,
+                    style: GoogleFonts.playfairDisplay(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,),
                     decoration: InputDecoration(
                       hintText: "What your product do",
+                      hintStyle: GoogleFonts.playfairDisplay(
+                      color: Color.fromARGB(117, 255, 255, 255),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,),
+                      fillColor: Color.fromARGB(255, 89, 88, 88),
+                      filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)
                       ),
@@ -132,8 +152,18 @@ class _TextInputPageState extends State<TextInputPage> {
               
                   TextFormField(
                     controller: someFeaturesCont,
+                    style: GoogleFonts.playfairDisplay(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,),
                     decoration: InputDecoration(
                       hintText: "Mention your product features, if any",
+                      hintStyle: GoogleFonts.playfairDisplay(
+                      color: Color.fromARGB(117, 255, 255, 255),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,),
+                      fillColor: Color.fromARGB(255, 89, 88, 88),
+                      filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)
                       )

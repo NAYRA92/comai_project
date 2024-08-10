@@ -12,14 +12,14 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 2), (){
+    Future.delayed(Duration(seconds: 15), (){
         Navigator.push(
                       context, 
                       MaterialPageRoute(
                         builder: (context) => TextInputPage()));
     });
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 89, 88, 88),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +79,7 @@ class LandingPage extends StatelessWidget {
                   fontWeight: FontWeight.w500,),
                   ),
 
-              Text("On click away!",
+              Text("On click away!\nGet auto generated advertaisment text\nthat will make your product or service shine 🌟",
                 style: GoogleFonts.playfairDisplay(
                   color: Colors.amber,
                   fontSize: 18,
@@ -89,7 +89,8 @@ class LandingPage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         surfaceTintColor: Colors.transparent,
-        child: Text("Developed with love by starCode for Development\nUsing Flutter and Gemini",
+        height: 80,
+        child: Text("Developed with love by starCode for Development\nUsing Flutter and Gemini\n💙💛",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(
                   color: Colors.blueGrey,
