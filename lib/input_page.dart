@@ -64,8 +64,17 @@ class _TextInputPageState extends State<TextInputPage> {
                           ),
                       ),
                 ],),
+                  Container(
+                    width: 200,
+                    child: Text("Now you can get your product or service advertaised easily!",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.playfairDisplay(
+                        color: Colors.amber[700],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,)),
+                  ),
                   SizedBox(height: 18,),
-                  Text("Name of Your Product",
+                  Text("Name of Your Product/Service",
                   style: GoogleFonts.playfairDisplay(
                       color: Colors.amber[800],
                       fontSize: 18,
@@ -81,7 +90,7 @@ class _TextInputPageState extends State<TextInputPage> {
                       ),
                     validator: (value) {
                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'This field can\'t be empty';
                         }
                       return null;
                 
@@ -107,7 +116,7 @@ class _TextInputPageState extends State<TextInputPage> {
                     maxLines: 4,
                     validator: (value) {
                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'This field can\'t be empty';
                         }
                       return null;
                 

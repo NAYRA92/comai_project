@@ -12,9 +12,13 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    Scaffold(
+    Future.delayed(Duration(seconds: 2), (){
+        Navigator.push(
+                      context, 
+                      MaterialPageRoute(
+                        builder: (context) => TextInputPage()));
+    });
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
