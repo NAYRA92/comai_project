@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 15), (){
+    Future.delayed(Duration(seconds: 7), (){
         Navigator.push(
                       context, 
                       MaterialPageRoute(
