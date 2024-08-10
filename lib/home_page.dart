@@ -5,6 +5,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:share_plus/share_plus.dart';
 
+
 String _apiKey = comaiCodeApi; //import your own api key instead of comaiCodeApi
 
 class ChatScreen extends StatefulWidget {
